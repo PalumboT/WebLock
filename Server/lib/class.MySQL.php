@@ -121,16 +121,19 @@ class MySQL {
                 $data = $data;
                 break;
             case 'str':
-                $data = settype( $data, 'string');
+            case 'string':
+                settype( $data, 'string');
                 break;
             case 'int':
-                $data = settype( $data, 'integer');
+            case 'integer':
+                settype( $data, 'integer');
                 break;
             case 'float':
-                $data = settype( $data, 'float');
+                settype( $data, 'float');
                 break;
             case 'bool':
-                $data = settype( $data, 'boolean');
+            case 'boolean':
+                settype( $data, 'boolean');
                 break;
             // Y-m-d H:i:s
             // 2014-01-01 12:30:30
@@ -141,7 +144,7 @@ class MySQL {
                 $data = $matches[1];
                 break;
             case 'ts2dt':
-                $data = settype( $data, 'integer');
+                settype( $data, 'integer');
                 $data = date('Y-m-d H:i:s', $data);
                 break;
 
@@ -168,15 +171,10 @@ class MySQL {
 
     // Executes MySQL query
     public function executeSQL($query){
-        $this->lastQuery = $query;
-        if($this->result = mysql_query($query, $this->databaseLink)){
-            if (gettype($this->result) === 'resource') {
-                $this->records  = @mysql_num_rows($this->result);
-                $this->affected = @mysql_affected_rows($this->databaseLink);
-            } else {
-               $this->records  = 0;
-               $this->affected = 0;
-            }
+        $this->lastQuery 	= $query;
+        if($this->result 	= mysql_query($query, $this->databaseLink)){
+            $this->records 	= @mysql_num_rows($this->result);
+            $this->affected	= @mysql_affected_rows($this->databaseLink);
 
             if($this->records > 0){
                 $this->arrayResults();
@@ -245,7 +243,7 @@ class MySQL {
 
 
     // Gets a single row from $from where $where is true
-    public function select($from, $where='', $orderBy='', $limit='', $like=false, $operand='AND',$cols='*', $wheretypes=''){
+    public function select($from, $where='', $orderBy='', $limit='', $like=false, $operand='AND',$cols='*', $wheretypes){
         // Catch Exceptions
         if(trim($from) == ''){
             return false;
@@ -333,9 +331,9 @@ class MySQL {
     // 'Arrays' multiple result
     public function arrayResults(){
 
-        if($this->records == 1){
-            return $this->arrayResult();
-        }
+        //if($this->records == 1){
+            //return $this->arrayResult();
+        //}
 
         $this->arrayedResult = array();
         while ($data = mysql_fetch_assoc($this->result)){

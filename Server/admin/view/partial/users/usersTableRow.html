@@ -1,0 +1,20 @@
+
+<form action='scripts/user.php?action=update&id=[[iduser]]' method='post'>		
+	<div class='row' style='margin-bottom: 20px;'>
+		<div class='col-md-2 col-md-offset-1'><input type='text' class='form-control' name='firstname' value='[[firstname]]' /></div>
+		<div class='col-md-2'><input type='text' class='form-control' name='lastname' value='[[lastname]]' /></div>
+		<div class='col-md-2'><input type='text' class='form-control' name='idkey' value='[[idkey]]' /></div>
+		<div class='col-md-2'>
+			<select name='permission' class='form-control'>
+				<option value='1' [[selectedAllowed]]>Allowed</option>
+				<option value='2' [[selectedDenied]]>Denied</option>
+			</select>
+		</div>
+		<div class='col-md-2'>
+			<div class='row'>
+				<div class='col-md-6'><input type='submit' value='Update' class='btn btn-info btn-sm' /></div>
+				<div class='col-md-6'><a href='scripts/user.php?action=delete&iduser=[[iduser]]' class='btn btn-info btn-sm' onclick="return confirm('Are you sure?')">Delete</a></button></div>
+			</div>
+		</div>
+	</div>
+</form>

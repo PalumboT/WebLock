@@ -1,0 +1,12 @@
+########################
+# Weblock offline mode #
+########################
+
+# FirstName Lastname
+KeyID Permission
+
+# FirstName Lastname
+KeyID Permission
+
+# FirstName Lastname
+KeyID Permission
