@@ -2,7 +2,7 @@
 	body { 
 		padding-top: 80px;
 		word-wrap: break-word; 
-		background-color: #5bc0de;
+		background-color: #00C7CC;
 		font-family: 'Open Sans', Georgia, Times, serif;
 	}
 
@@ -32,4 +32,16 @@
 		width: 150px;
 		margin-bottom: 5px;
 		display: inline-block;
+	}
+
+	.btn-info{
+		background-color: #00C7CC;
+		border-color: #00D1D6;
+	}
+
+	.btn-info:hover{
+
+		background-color: #4CD1D6;
+		border-color: #4CD1D6;
+
 	}

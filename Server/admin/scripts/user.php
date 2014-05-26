@@ -1,13 +1,13 @@
 <?php
 	
-	// If the user is not authentified, redirect to the login file
+    // If the user is not authentified, redirect to the login file
 	if (!isset($_SERVER['PHP_AUTH_DIGEST'])) header("Location:index.php");
 
     // Define the main directory path
-	define('ROOT_PATH', realpath(__DIR__)."/..");
+	define('ROOT_PATH', realpath(__DIR__)."/../..");
 	
 	// Include the database manager file
-	require_once(ROOT_PATH.'/lib/database.php');
+	require_once(ROOT_PATH.'/lib/database.MySQL.php');
 
 	/*
      * Instancation of the database class
@@ -20,6 +20,12 @@
 	*/
 
 	$action = $_GET['action'];
+
+	/*
+	 * Error ????????
+	*/
+
+	$error = null;
 
 	/*
 	 * Switch on the action to determine what we have to do
@@ -42,6 +48,20 @@
 	        break;
 	}
 
+
+	/*
+     * Update the offline file
+	*/
+
+	if(!$error){
+		$users = $db->getUsers();
+		foreach($users as $user) {
+			$out .= "# $user[firstname] $user[lastname] \n $user[idkey] $user[permission] \n";
+		}
+		file_put_contents(ROOT_PATH."/../files/keys.txt", $out);
+	}
+
+
 	/*
      * Redirect to the main page
 	*/
@@ -55,7 +75,7 @@
 	function create(){
 
 		// Referencing the database class variable as global
-		global $db;
+		global $db, $error;
 
 		// Get the values of the form
 		$user = array('firstname' => $_POST['firstname'], 'lastname' => $_POST['lastname'], 'idkey' => $_POST['idkey'], 'permission' => $_POST['permission']);
@@ -63,7 +83,10 @@
 		// check if the key doesn't already exist
 		if($_POST['idkey'] !== ''){
 			// If an user have the key, return an error and do nothing else
-			if(is_array($db->getUser($_POST['idkey']))) return 'errorKey';
+			if(is_array($db->getUser($_POST['idkey']))) {
+				$error = true;
+				return 'errorKey';
+			}
 		}
 
 		// If the permission is not set (when you create a key with the history table for exemple)
@@ -83,7 +106,7 @@
 	function update(){
 
 		// Referencing the database class variable as global
-		global $db;
+		global $db, $error;
 		
 		// Get the id of the user
 		$id = $_GET['id'];
@@ -99,6 +122,7 @@
 			if(is_array($users)){
 				// If the user that hold the key isn't the same user of the update
 				if($users[0]['iduser'] != $id){
+					$error = true;
 					// return an error and do nothing else
 					return 'errorKey';
 				}

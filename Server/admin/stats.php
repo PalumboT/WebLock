@@ -4,10 +4,10 @@
 	if (!isset($_SERVER['PHP_AUTH_DIGEST'])) header("Location:index.php");
 
     // Define the main directory path
-	define('ROOT_PATH', realpath(__DIR__));
+	define('ROOT_PATH', realpath(__DIR__)."/..");
 	
 	// Include the database manager file
-	require_once(ROOT_PATH.'/lib/database.php');
+	require_once(ROOT_PATH.'/lib/database.MySQL.php');
 
 	// Get the file that contain the template of the page
 	$page = file_get_contents('view/page.html');
@@ -71,7 +71,7 @@
 	// Generat a row for a stat
 	function generateStat($description, $result){
 		// Get the file that contain the template of a stat row 
-		$out = file_get_contents(ROOT_PATH.'/view/partial/stats/statsTableRow.html');
+		$out = file_get_contents('view/partial/stats/statsTableRow.html');
 		// Place the stat data in the different data area in the template
 		$out = str_replace("[[description]]",$description,$out);
 		$out = str_replace("[[result]]",$result,$out);

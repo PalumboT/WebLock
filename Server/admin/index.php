@@ -8,7 +8,7 @@
 
     $digestParts = digestParse($digest);
 
-    $ini_array = parse_ini_file("config/config.ini", true)['webadmin'];
+    $ini_array = parse_ini_file("../config.ini", true)['webadmin'];
     $validUser = $ini_array['login'];
     $validPass = $ini_array['password'];
 

@@ -19,7 +19,7 @@
      * Include the database manager class file
 	*/
 
-	require("lib/db.php");
+	require("lib/database.MySQL.php");
 
 	/*
 	 * Initialisation of the database class

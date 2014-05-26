@@ -1,13 +1,13 @@
 <?php
-
+	
     // If the user is not authentified, redirect to the login file
 	if (!isset($_SERVER['PHP_AUTH_DIGEST'])) header("Location:index.php");
 
     // Define the main directory path
-	define('ROOT_PATH', realpath(__DIR__));
+	define('ROOT_PATH', realpath(__DIR__)."/..");
 	
 	// Include the database manager file
-	require_once(ROOT_PATH.'/lib/database.php');
+	require_once(ROOT_PATH.'/lib/database.MySQL.php');
 
 	// Get the file that contain the template of the page
 	$page = file_get_contents('view/page.html');
@@ -102,7 +102,7 @@
 		$color;
 		switch($permission){
 			case '0':
-				$color = 'danger';
+				$color = 'warning';
 				break;
 			case '1':
 				$color = 'success';
