@@ -1,5 +1,14 @@
 <?php
 
+    /*
+     *  Timothée Palumbo (https://github.com/PalumboT)
+     * 
+     *  WebLock by WebForge is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+     *  Based on a work at https://github.com/PalumboT/WebLock.
+     *
+     *  Digest authentification
+    */
+
     $realm = 'WebLock';
     $nonce = uniqid();
     $digest = getDigest();

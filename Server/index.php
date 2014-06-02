@@ -1,12 +1,10 @@
 <?php
 
 	/*
-	 * Copyright (C) 2014
 	 * 	Timothée Palumbo (https://github.com/PalumboT)
 	 * 
-	 * Weblock project is a RFID lock connected that use a web server 
-	 * for the authentication. This is the authentification service
-	 * 
+	 *  WebLock by WebForge is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+	 *	Based on a work at https://github.com/PalumboT/WebLock.
 	*/
 
 	/*

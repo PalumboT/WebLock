@@ -1,5 +1,12 @@
 <?php
 	
+	/*
+	 * 	Timothée Palumbo (https://github.com/PalumboT)
+	 * 
+	 *  WebLock by WebForge is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+	 *	Based on a work at https://github.com/PalumboT/WebLock.
+	*/
+	
     // If the user is not authentified, redirect to the login file
 	if (!isset($_SERVER['PHP_AUTH_DIGEST'])) header("Location:index.php");
 

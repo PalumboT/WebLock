@@ -1,8 +1,13 @@
 <?php
 
-	/**
-	 * Use by the WebLock server to access a MySQL database
-	 * Require the class.MySQL.php v0.8.1 (https://github.com/a1phanumeric/PHP-MySQL-Class/blob/master/class.MySQL.php)
+	/*
+	 * 	Timothée Palumbo (https://github.com/PalumboT)
+	 * 
+	 *  WebLock by WebForge is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+	 *	Based on a work at https://github.com/PalumboT/WebLock.
+	 *
+	 *  Use by the WebLock server to access a MySQL database
+	 *  Require the class.MySQL.php v0.8.1 (https://github.com/a1phanumeric/PHP-MySQL-Class/blob/master/class.MySQL.php)
 	*/
 
 	require('class.MySQL.php');
