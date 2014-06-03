@@ -3,7 +3,12 @@
 	/*
 	 * 	Timothée Palumbo (https://github.com/PalumboT)
 	 * 
-	 *  WebLock by WebForge is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+	 *  DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+     *             Version 2, December 2004
+ 
+	 *	Everyone is permitted to copy and distribute verbatim or modified
+	 *	copies of this source code, and changing it is allowed.
+	 *
 	 *	Based on a work at https://github.com/PalumboT/WebLock.
 	 *
 	 *  Use by the WebLock server to access a MySQL database
