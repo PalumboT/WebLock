@@ -66,11 +66,12 @@
 	*/
 
 	if(!$error){
+
 		$users = $db->getUsers();
 		foreach($users as $user) {
 			$out .= "# $user[firstname] $user[lastname] \n $user[idkey] $user[permission] \n";
 		}
-		file_put_contents(ROOT_PATH."/../files/keys.txt", $out);
+		file_put_contents(ROOT_PATH."/files/keys.txt", $out);
 	}
 
 
@@ -103,7 +104,7 @@
 
 		// If the permission is not set (when you create a key with the history table for exemple)
 		// set the permission as denied
-		if($_POST['permission'] !== ''){
+		if(!isset($_POST['permission'])){
 			$user['permission'] = 2;
 		}
 

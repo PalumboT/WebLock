@@ -1,11 +1,14 @@
-  /********************************************************************
-   *  ArduiLock v1.2                                                  *
-   *  Timothée PalumboT                                               * 
-   *                                                                  *
-   *  WebLock by WebForge is licensed under a Creative Commons        *
-   *  Attribution-NonCommercial-ShareAlike 4.0 International License. *
-   *  Based on a work at https://github.com/PalumboT/WebLock.         *
-   ********************************************************************/
+  
+  /***************************************************************************
+  *  Timothée Palumbo (https://github.com/PalumboT)                          *
+  *                                                                          *
+  *  DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE                             *
+  *             Version 2, December 2004                                     *
+  *  Everyone is permitted to copy and distribute verbatim or modified       *
+  *  copies of this source code, and changing it is allowed.                 *
+  *                                                                          *
+  *  Based on a work at https://github.com/PalumboT/WebLock.                 *
+  ****************************************************************************/
   
   #include <SPI.h>
   #include <Ethernet.h>
@@ -25,9 +28,10 @@
    ***************************/
   
   byte             mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };    // MAC address of the ethernet shield
-  IPAddress        server(192,168,0,205);                             // IP address of the server
-  IPAddress        ip(192,168,0,206);                                 // IP address of the ethernet shield
-  IPAddress        ddns(192,168,0,1);                                 // IP address of the DNS
+  IPAddress        server(XXX,XXX,XXX,XXX);                           // IP address of the server
+  //char           server[] = "www.exemple.com";                      // Address of the server (Domain name)
+  IPAddress        ip(XXX,XXX,XXX,XXX);                               // IP address of the ethernet shield
+  IPAddress        ddns(XXX,XXX,XXX,XXX);                             // IP address of the DNS server
   EthernetClient   client;                                            // Creating an ethernet client for queries
   TextFinder       finder(client, 1);                                 // Use to retrieve data when the server send a response
   
@@ -45,6 +49,7 @@
   #define         LED_GREEN   6                                       
   #define         LED_RED     5
   #define         BUZZER      9
+  #define         STRIKE      8
   
   /***********************************************
    *  SD Card                                    *
@@ -59,13 +64,13 @@
   char            inChar;                                            // Hold the incoming byte from different sources (RFID, SDCard, etc.) 
   byte            i = 0;                                             // Use to loop in different place of the application
    
-  /***********************************************
-   *  Application activation part                *
-   ***********************************************/
+  /************************************************************************************
+   *  Application activation part. Comment the line to disabling fonctionalities      *
+   ************************************************************************************/
 
-   //#define        activeBip;
-   #define        activeOffline;
-   //#define        activeDebug;
+   #define        activeBip;                                         // You can active the song
+   #define        activeOffline;                                     // You can active the offline mode
+   #define        activeDebug;                                       // You can active debug on the serial
     
   /***********************************************
    *  For debug purpose                          *
@@ -102,23 +107,19 @@
     
     RFID.begin(9600);     
     
-    //////////////////////////////////////
-    // Configuring leds ports as output //
-    //////////////////////////////////////
+    //////////////////////////////////////////////////////
+    // Configuring leds ports and strike port as output //
+    //////////////////////////////////////////////////////
     
     pinMode(LED_GREEN, OUTPUT);        
-    pinMode(LED_RED, OUTPUT);     
+    pinMode(LED_RED, OUTPUT);
+    pinMode(STRIKE, OUTPUT);    
 
     //////////////////////////////////////
     // Start of the ethernet connection //
     //////////////////////////////////////
-    
-    if (Ethernet.begin(mac) == 0) {                             
-      cleanDebug("Failed to configure Ethernet using DHCP");
-      // Configuring a static IP if fail with DHCP   
-      Ethernet.begin(mac, ip, ddns, ddns);                      
-    }
-    cleanDebug("Ethernet ready !");    
+
+    Ethernet.begin(mac, ip, ddns); 
     
     ///////////////////////////////////
     // Initialisation of the SD Card //
@@ -460,7 +461,9 @@
   
   void accessAllowed(){
     // Power on the green led
-    digitalWrite(LED_GREEN, HIGH);   
+    digitalWrite(LED_GREEN, HIGH); 
+    // Open the door with the electrical strike
+    digitalWrite(STRIKE, HIGH);   
     // Display a message in the serial port        
     cleanDebug("Unlock"); 
     // Do a long bip
@@ -513,6 +516,7 @@
     // Power of the leds    
     digitalWrite(LED_RED, LOW);                                                 
     digitalWrite(LED_GREEN, LOW);  
+    digitalWrite(STRIKE, LOW);
     // Empty the buffer of the RFID reader    
     RFID.flush();   
   }

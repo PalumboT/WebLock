@@ -45,3 +45,24 @@
 		border-color: #4CD1D6;
 
 	}
+
+	@media (max-width: 991px) {
+		.usersTableRow{
+			float: left;
+			width: 93%;
+			margin: 10px;
+
+		}
+		.usersTableRow input{
+			margin: 10px 0;
+		}
+		#usersTableTitle{
+			display: none;
+		}
+	}
+
+	@media (max-width: 767px) {
+		.usersTableRow{
+			width: 99%;
+		}
+	}

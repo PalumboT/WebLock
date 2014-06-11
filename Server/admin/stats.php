@@ -30,6 +30,10 @@
 
 	$stats = array();
 
+	/*
+	 * Creating the stats
+	*/
+
 	$stats[] = array('description' => 'Total number of authorized Access',		'query' => 'SELECT count(*) FROM accesslog WHERE permission=1');
 	$stats[] = array('description' => 'Total number of unauthorized Access',	'query' => 'SELECT count(*) FROM accesslog WHERE permission=0');
 	$stats[] = array('description' => 'Total number of access attempt',			'query' => 'SELECT count(*) FROM accesslog');
